@@ -2,23 +2,25 @@
 
 namespace App\Controller\Class;
 
+use Exception;
+
 abstract class Equine extends Animal
 {
    private string $id;
-   private string $name;
    private string $color;
    private int $water;
    private Rider $rider;
    private array $Equines = [];
    private string $Category;
 
-   public function __construct(string $id, string $name, string $color, int $water,  ,Rider $rider = null)
+   public function __construct(string $name, string $color, int $water, Rider $rider = null, string $Category)
    {
-      $this->setId($id)
-         ->setName($name)
-         ->setColor($color)
-         ->setWater($water)
-         ->setRider($rider);
+      parent::__construct($name);
+      $this->setId($this->generateId());
+      $this->setColor($color);
+      $this->setWater($water);
+      $this->setRider($rider);
+      $this->setCategory($Category);
    }
 
    //Getters
@@ -36,7 +38,7 @@ abstract class Equine extends Animal
     */
    public function getName(): string
    {
-      return $this->name;
+      return $this->getAnimalName();
    }
 
    /**
@@ -169,5 +171,28 @@ abstract class Equine extends Animal
    public function addEquine(Equine $Equine): void
    {
       $this->Equines[] = $Equine;
+   }
+
+   /**
+    * Remove an Equine from the array of Equines
+    * @param Equine $Equine
+    * @return void
+    */
+   public function removeEquine(Equine $Equine): void
+   {
+      $key = array_search($Equine, $this->Equines);
+      if ($key !== false) {
+         unset($this->Equines[$key]);
+      }
+   }
+
+   /**
+   * Generate an ID for the Equine with 000-First letter of the name-First letter of the color-Number of equine in the array
+   * @return string
+   */
+   public function generateId(): string
+   {
+      $id = '000-' . substr($this->getName(), 0, 1) ."-". substr($this->getColor(), 0, 1) ."-". count($this->getEquines())."\n";
+      return $id;
    }
 }

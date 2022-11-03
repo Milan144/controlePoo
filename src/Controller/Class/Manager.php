@@ -15,9 +15,9 @@ class Manager extends Human
 
    /**
     * Get the manager of the stable
-    * @return Human
+    * @return self
     */
-   public function getManager(): Human
+   public function getManager(): self
    {
       return $this->manager;
    }
