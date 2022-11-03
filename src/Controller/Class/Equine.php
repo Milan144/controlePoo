@@ -63,6 +63,22 @@ abstract class Equine extends Animal
       return $this->rider;
    }
 
+   /**
+    * @return string
+    */
+   public function getCategory(): string
+   {
+      return $this->Category;
+   }
+
+   /**
+    * @return array
+    */
+   public function getEquines(): array
+   {
+      return $this->Equines;
+   }
+
    //Setters
 
    /**
@@ -120,6 +136,20 @@ abstract class Equine extends Animal
       return $this;
    }
 
+   /**
+    * @param string $Category
+    * @return self
+    */
+   public function setCategory(string $Category): self
+   {
+      if($Category != 'Poney' && $Category != 'Cheval' && $Category != 'Sheitland') {
+         throw new Exception("The category must be 'Poney' or 'Cheval' or 'Sheitland.");
+      } else {
+         $this->Category = $Category;
+      }
+      return $this;
+   }
+
    //Methods
 
    /**
@@ -127,4 +157,17 @@ abstract class Equine extends Animal
     * @return string
     */
    public function __toString(): string
+   {
+      return "ID : " . $this->getId() . "\nName : " . $this->getName() . "\nColor : " . $this->getColor() . "\nWater : " . $this->getWater() . "\nRider : " . $this->getRider()->getName() . "\nCategory : " . $this->getCategory() . "\n";
+   }
+
+   /**
+    * Add an Equine to the array of Equines
+    * @param Equine $Equine
+    * @return void
+    */
+   public function addEquine(Equine $Equine): void
+   {
+      $this->Equines[] = $Equine;
+   }
 }
