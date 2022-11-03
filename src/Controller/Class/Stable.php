@@ -13,6 +13,7 @@ class Stable
    private string $City;
    private Manager $Manager;
    private array $horses = [];
+   private array $Riders = [];
 
    public function __construct(string $Name, string $Adress, string $Street, int $PostCode, $City, Manager $Manager = null)
    {
@@ -160,6 +161,30 @@ class Stable
       $this->equine[] = $equine;
       return $this;
    }
+
+   /**
+    * Add a rider to the stable
+    * @param Rider $rider
+    * @return self
+    */
+   public function addRider(Rider $rider): self
+   {
+      $this->Riders[] = $rider;
+      return $this;
+   }
+
+   /**
+    * Get the list of the riders
+      * @return array
+    */
+   public function getRiders(): array
+   {
+      return $this->Riders;
+   }
+   
+
+   
+
 
 
 }
