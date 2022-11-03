@@ -1,22 +1,24 @@
 <?php
 
-class Stable 
+namespace App\Controller\Class;
+
+abstract class Human
 {
    private string $Name;
    private string $Adress;
    private string $Street;
    private int $PostCode;
    private string $City;
-   private Manager $Manager;
+   private Categorie $Categorie;
 
-   public function __construct(string $Name, string $Adress, string $Street, int $PostCode, $City, Manager $Manager = null)
+   public function __construct(string $Name, string $Adress, string $Street, int $PostCode, string $City, Categorie $Categorie = null)
    {
       $this->setName($Name)
             ->setAdress($Adress)
             ->setStreet($Street)
             ->setPostCode($PostCode)
             ->setCity($City)
-            ->setManager($Manager);
+            ->setCategorie($Categorie);
    }
 
    //Getters
@@ -62,12 +64,11 @@ class Stable
    }
 
    /**
-    * Get the manager of the stable
-    * @return Human
+    * @return Categorie
     */
-   public function getManager(): Human
+   public function getCategorie(): Categorie
    {
-      return $this->Manager->getManager();
+      return $this->Categorie;
    }
 
    //Setters
@@ -76,7 +77,7 @@ class Stable
     * @param string $Name
     * @return self
     */
-   public function setName($Name): self
+   public function setName(string $Name): self
    {
       $this->Name = $Name;
       return $this;
@@ -86,7 +87,7 @@ class Stable
     * @param string $Adress
     * @return self
     */
-   public function setAdress($Adress): self
+   public function setAdress(string $Adress): self
    {
       $this->Adress = $Adress;
       return $this;
@@ -96,7 +97,7 @@ class Stable
     * @param string $Street
     * @return self
     */
-   public function setStreet($Street): self
+   public function setStreet(string $Street): self
    {
       $this->Street = $Street;
       return $this;
@@ -106,7 +107,7 @@ class Stable
     * @param int $PostCode
     * @return self
     */
-   public function setPostCode($PostCode): self
+   public function setPostCode(int $PostCode): self
    {
       $this->PostCode = $PostCode;
       return $this;
@@ -116,34 +117,31 @@ class Stable
     * @param string $City
     * @return self
     */
-   public function setCity($City): self
+   public function setCity(string $City): self
    {
       $this->City = $City;
       return $this;
    }
 
    /**
-    * Set the manager of the stable
-    * @param Human $Human
+    * @param Categorie $Categorie
     * @return self
     */
-   public function setManager($Human): self
+   public function setCategorie(Categorie $Categorie): self
    {
-      $this->Manager->setManager($Human);
+      $this->Categorie = $Categorie;
       return $this;
    }
 
    //Methods
 
    /**
-    * Print the infos of the stable
+    * Print the infos of the human
     *
     * @return string
     */
-   public function __toString(): string
-   {
-      return "Name of the stable : " . $this->getName() . ", Adress:  " . $this->getAdress() . ", Street: " . $this->getStreet() . ", Post Code:  " . $this->getPostCode() . ", City: " . $this->getCity() . ", Name of the manager: " . $this->getManager()->getName()."\n";
-   }
-
-
+    public function __toString(): string
+    {
+       return "Name : " . $this->getName() . ", Adress:  " . $this->getAdress() . ", Street: " . $this->getStreet() . ", Post Code:  " . $this->getPostCode() . ", City: " . $this->getCity() . ", Name of the category: " . $this->getCategorie()->getName()."\n";
+    }
 }

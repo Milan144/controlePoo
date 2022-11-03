@@ -1,22 +1,26 @@
 <?php
 
-abstract class Human
+namespace App\Controller\Class;
+
+class Stable 
 {
+
+   // TODO : Faire la collection d'équidés et ajoiter des equides a la collection
    private string $Name;
    private string $Adress;
    private string $Street;
    private int $PostCode;
    private string $City;
-   private Categorie $Categorie;
+   private Manager $Manager;
 
-   public function __construct(string $Name, string $Adress, string $Street, int $PostCode, string $City, Categorie $Categorie = null)
+   public function __construct(string $Name, string $Adress, string $Street, int $PostCode, $City, Manager $Manager = null)
    {
       $this->setName($Name)
             ->setAdress($Adress)
             ->setStreet($Street)
             ->setPostCode($PostCode)
             ->setCity($City)
-            ->setCategorie($Categorie);
+            ->setManager($Manager);
    }
 
    //Getters
@@ -62,11 +66,12 @@ abstract class Human
    }
 
    /**
-    * @return Categorie
+    * Get the manager of the stable
+    * @return Human
     */
-   public function getCategorie(): Categorie
+   public function getManager(): Human
    {
-      return $this->Categorie;
+      return $this->Manager->getManager();
    }
 
    //Setters
@@ -75,7 +80,7 @@ abstract class Human
     * @param string $Name
     * @return self
     */
-   public function setName(string $Name): self
+   public function setName($Name): self
    {
       $this->Name = $Name;
       return $this;
@@ -85,7 +90,7 @@ abstract class Human
     * @param string $Adress
     * @return self
     */
-   public function setAdress(string $Adress): self
+   public function setAdress($Adress): self
    {
       $this->Adress = $Adress;
       return $this;
@@ -95,7 +100,7 @@ abstract class Human
     * @param string $Street
     * @return self
     */
-   public function setStreet(string $Street): self
+   public function setStreet($Street): self
    {
       $this->Street = $Street;
       return $this;
@@ -105,7 +110,7 @@ abstract class Human
     * @param int $PostCode
     * @return self
     */
-   public function setPostCode(int $PostCode): self
+   public function setPostCode($PostCode): self
    {
       $this->PostCode = $PostCode;
       return $this;
@@ -115,31 +120,34 @@ abstract class Human
     * @param string $City
     * @return self
     */
-   public function setCity(string $City): self
+   public function setCity($City): self
    {
       $this->City = $City;
       return $this;
    }
 
    /**
-    * @param Categorie $Categorie
+    * Set the manager of the stable
+    * @param Human $Human
     * @return self
     */
-   public function setCategorie(Categorie $Categorie): self
+   public function setManager($Human): self
    {
-      $this->Categorie = $Categorie;
+      $this->Manager->setManager($Human);
       return $this;
    }
 
    //Methods
 
    /**
-    * Print the infos of the human
+    * Print the infos of the stable
     *
     * @return string
     */
-    public function __toString(): string
-    {
-       return "Name : " . $this->getName() . ", Adress:  " . $this->getAdress() . ", Street: " . $this->getStreet() . ", Post Code:  " . $this->getPostCode() . ", City: " . $this->getCity() . ", Name of the category: " . $this->getCategorie()->getName()."\n";
-    }
+   public function __toString(): string
+   {
+      return "Name of the stable : " . $this->getName() . ", Adress:  " . $this->getAdress() . ", Street: " . $this->getStreet() . ", Post Code:  " . $this->getPostCode() . ", City: " . $this->getCity() . ", Name of the manager: " . $this->getManager()->getName()."\n";
+   }
+
+
 }

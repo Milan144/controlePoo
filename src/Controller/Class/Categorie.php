@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controller\Class;
+
 abstract class Categorie
 {
    private string $Name;

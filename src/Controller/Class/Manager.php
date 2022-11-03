@@ -1,6 +1,8 @@
 <?php
 
-abstract class Manager extends Human
+namespace App\Controller\Class;
+
+class Manager extends Human
 {
    private Human $manager;
 

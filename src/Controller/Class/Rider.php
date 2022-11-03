@@ -1,16 +1,16 @@
 <?php
 
+namespace App\Controller\Class;
+
 class Rider extends Human
 {
    private Stable $Stable;
-   private string $GameType;
 
-   public function __construct(string $Name, string $Adress, string $Street, int $PostCode, string $City, string $GameType, Stable $Stable, Categorie $Categorie = null)
+   public function __construct(string $Name, string $Adress, string $Street, int $PostCode, string $City, GameType $GameType, Stable $Stable, Categorie $Categorie = null)
    {
       parent::__construct($Name, $Adress, $Street, $PostCode, $City, $Categorie);
       $this->setStable($Stable)
             ->setGameType($GameType);
-
    }
 
    //Getters
@@ -40,7 +40,7 @@ class Rider extends Human
     */
    public function getGameType(): string
    {
-      return $this->GameType;
+      return $this->GameType->getGameTypeName();
    }
 
    /**
@@ -49,7 +49,7 @@ class Rider extends Human
     */
    public function setGameType(string $GameType): self
    {
-      $this->GameType = $GameType;
+      $this->GameType->setGameTypeName($GameType);
       return $this;
    }
 
@@ -59,8 +59,6 @@ class Rider extends Human
    {
       return "The rider " . $this->getName() . " is a " . $this->getGameType() . " rider and is a member of the stable " . $this->getStable()->getName() . ".";
    }
-
-   
 
    
 }
