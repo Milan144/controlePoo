@@ -15,14 +15,13 @@ class Stable
    private array $horses = [];
    private array $Riders = [];
 
-   public function __construct(string $Name, string $Adress, string $Street, int $PostCode, $City, Manager $Manager = null)
+   public function __construct(string $Name, string $Adress, string $Street, int $PostCode, $City)
    {
       $this->setName($Name)
             ->setAdress($Adress)
             ->setStreet($Street)
             ->setPostCode($PostCode)
-            ->setCity($City)
-            ->setManager($Manager);
+            ->setCity($City);
    }
 
    //Getters
@@ -133,7 +132,7 @@ class Stable
     * @param Human $Human
     * @return self
     */
-   public function setManager($Human): self
+   public function setManager(Human $Human): self
    {
       $this->Manager->setManager($Human);
       return $this;
@@ -181,7 +180,7 @@ class Stable
    {
       return $this->Riders;
    }
-   
+
 
    
 
